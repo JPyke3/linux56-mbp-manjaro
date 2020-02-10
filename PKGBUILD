@@ -11,14 +11,14 @@ pkgname=('linux56' 'linux56-headers')
 _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
-_aufs=20200127
+_aufs=20200203
 _sub=0
 _rc=rc1
 _commit=bb6d3fb354c5ee8d6bde2d576eb7220ea09862b9
 _shortcommit=${_rc}.d0209.g${_commit:0:7}
 pkgver=${_basekernel}${_shortcommit}
 #pkgver=${_basekernel}.${_sub}
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -64,11 +64,11 @@ source=(#"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 sha256sums=('9c871af6e1ad5c1ad861702119917f753d76a2163c5df979d9c07d9a3ecdf103'
-            '73fb43c4ce4953f299185148035411b6bbfc54fffcd1e2b099fb639787aed88d'
+            'e5185520f68bfbf19108ee3ef10fcef0ba303521e3333081f47578f76a6c42af'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            '5140f290d76b35a06e13b431f72f7049c07c46cd12f985777e0b0bcb613f1104'
-            'd23d429e2a843d8b1c503480b650f59c9e2273e1907e927132e086dfc133616c'
+            '4d6dbc730e1a5d32694f2a72894715242987560667917bed74254b175def6d7c'
+            '15be5f67f3579c9cc4837d017a7148041799a99466dcee714b19cc07f9648558'
             'a5533120455c6490a75f06f5fc24b861ed2df503c980fa5548b5caa2f7984f13'
             '02211d7d11883e30a7a90fc4e1eb4c4d9391fa636f717fb7061ba48d26630ac4'
             '9bd2ec4fd05a993f140720d51d02ff7032c824fafcfb8d5dbd47272187534656'
