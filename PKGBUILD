@@ -11,11 +11,11 @@ pkgname=('linux56' 'linux56-headers')
 _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
-_aufs=20200203
+_aufs=20200224
 _sub=0
-_rc=rc2
-_commit=11a48a5a18c63fd7621bb050228cebf13566e4d8
-_shortcommit=${_rc}.d0216.g${_commit:0:7}
+_rc=rc3
+_commit=f8788d86ab28f61f7b46eb6be375f8a726783636
+_shortcommit=${_rc}.d0223.g${_commit:0:7}
 pkgver=${_basekernel}${_shortcommit}
 #pkgver=${_basekernel}.${_sub}
 pkgrel=1
@@ -63,18 +63,18 @@ source=(#"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-sha256sums=('63a021e13bac7c514990acd63d005825e230a467a2a3ec345c61d8e0cfd0fb26'
-            'ad5b3dbd9279beb45599655695ab4d34bc38a2e3504bb700e8b60305059734f9'
+sha256sums=('5a116edb6393ac9deb2dfe8ea6cd338a20bba9115adf364fb132ddb133cf1788'
+            'f87e16cce5c13f5c21e8d2b71636207b060ec7863687168f9ba962a807bd04c0'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            '4d6dbc730e1a5d32694f2a72894715242987560667917bed74254b175def6d7c'
-            '15be5f67f3579c9cc4837d017a7148041799a99466dcee714b19cc07f9648558'
-            'a5533120455c6490a75f06f5fc24b861ed2df503c980fa5548b5caa2f7984f13'
-            '02211d7d11883e30a7a90fc4e1eb4c4d9391fa636f717fb7061ba48d26630ac4'
-            '9bd2ec4fd05a993f140720d51d02ff7032c824fafcfb8d5dbd47272187534656'
-            '32caef5516e4d1d70cdb98a66011d70b5955aea0a19b525c46d914d7a35de0d5'
-            'c9796feddec29b332602bee218e8d3e5b629523b40314eeab078f415b96d1322'
-            'c95cc6bc798978e29125c49ab613959c939ab7cf505142e968025373f4ffb9d5'
+            'ebf56e0d1f754bcd941285dd29a14c38200f6cf65507cd4a7b7c5f529a9b85a3'
+            'b0a703e6ae80a6e82e7c76a9bd938ac4e77048165850170eae6bc484274e9496'
+            '8e3b0a3c7c9b62d29dc711885ef00578a65f1d0315f31e1d9f438aac1ced02d6'
+            '562752375ec67ece529eadf3f003193a371a875bdf6ed842ea8afde0e2e5618f'
+            '08c32bd8d8ee8f0e22264f61c8ab8e84b71e6a2f9c4994439540758c0bf61d83'
+            'eb1aaa49b9d5cdf35985a0803129b39145f81a4f1499f6e7f2afd8d31017b694'
+            '1c69ed79eeef0c0dcf68ce3086a0e372260d2fed94c93c7711e0682b2bcaae39'
+            '29adcb9fac02b77f93ec36c2003ae930cc0a6ee1884d002c280480b5e8f22261'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
             '5cbbf3db9ea3205e9b89fe3049bea6dd626181db0cb0dc461e4cf5a400c68dd6'
