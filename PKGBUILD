@@ -18,7 +18,7 @@ _commit=f8788d86ab28f61f7b46eb6be375f8a726783636
 _shortcommit=${_rc}.d0223.g${_commit:0:7}
 pkgver=${_basekernel}${_shortcommit}
 #pkgver=${_basekernel}.${_sub}
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -176,9 +176,9 @@ prepare() {
   echo "PATCH: aufs5-base"
   patch -Np1 -i "${srcdir}/aufs5-base.patch"
   echo "-------------------------------------------------------------------------------------------------------"
-#  echo "PATCH: aufs5-kbuild"
-#  patch -Np1 -i "${srcdir}/aufs5-kbuild.patch"
-#  echo "-------------------------------------------------------------------------------------------------------"
+  echo "PATCH: aufs5-kbuild"
+  patch -Np1 -i "${srcdir}/aufs5-kbuild.patch"
+  echo "-------------------------------------------------------------------------------------------------------"
   echo "PATCH: aufs5-loopback"
   patch -Np1 -i "${srcdir}/aufs5-loopback.patch"
   echo "-------------------------------------------------------------------------------------------------------"
