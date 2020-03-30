@@ -13,22 +13,15 @@ _basekernel=5.6
 _basever=56
 _aufs=20200302
 _sub=0
-_rc=rc7
-_commit=e2cf67f6689a218b4d8e606e90a12491a9cfa366
-_shortcommit=${_rc}.d0325.g${_commit:0:7}
-pkgver=${_basekernel}${_shortcommit}
-#pkgver=${_basekernel}.${_sub}
+pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils' 'git')
 options=('!strip')
-source=(#"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.xz"
         #"https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
-        #https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git/snapshot/linux-stable-rc-$_commit.tar.gz
-        #"linux-${pkgver}.tar.gz::https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-$_commit.tar.gz"
-        "linux-${pkgver}.zip::https://codeload.github.com/torvalds/linux/zip/$_commit"
         # the main kernel config files
         'config.x86_64' 'config' 'config.aufs'
         # AUFS Patches
@@ -63,11 +56,11 @@ source=(#"https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-sha256sums=('e1f754527e2ae865ee19a6154e2154ab2b7643df6a0924d0545046e284f2018e'
+sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             '1ae080d4b00f6b579919ce52d55b7da50f98e579337af655f909b6a60dcf3c26'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            '0078e5d757f0f675e47f1d1bce493d6e6624aed6e4b3aee1fd50da778fd6e11f'
+            'ef60c4afbae6270748bca1661d054815ea83f84ac3962fa316cd1b6abea506a4'
             '294d00163a5c68fee26f0adb52ccc309b1d1ae69ed7fe65fdabf29d425798ee4'
             '8e3b0a3c7c9b62d29dc711885ef00578a65f1d0315f31e1d9f438aac1ced02d6'
             '562752375ec67ece529eadf3f003193a371a875bdf6ed842ea8afde0e2e5618f'
@@ -96,8 +89,6 @@ sha256sums=('e1f754527e2ae865ee19a6154e2154ab2b7643df6a0924d0545046e284f2018e'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
 prepare() {
-  #mv "${srcdir}/linux-stable-rc-${_commit}" "${srcdir}/linux-${_basekernel}"
-  mv "${srcdir}/linux-${_commit}" "${srcdir}/linux-${_basekernel}"
   cd "${srcdir}/linux-${_basekernel}"
 
   # add upstream patch
@@ -109,91 +100,40 @@ prepare() {
   #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}.patch"
 
   # disable USER_NS for non-root users by default
-  echo "PATCH: 0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER"
   patch -Np1 -i ../0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
-  echo "-------------------------------------------------------------------------------------------------------"
   # other fixes by Arch
   # add patches for snapd
   # https://gitlab.com/apparmor/apparmor-kernel/tree/5.2-outoftree
-  echo "PATCH: 0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules"
   patch -Np1 -i "${srcdir}/0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0002-apparmor-af_unix-mediation"
   patch -Np1 -i "${srcdir}/0002-apparmor-af_unix-mediation.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0003-apparmor-fix-use-after-free-in-sk_peer_label"
   patch -Np1 -i "${srcdir}/0003-apparmor-fix-use-after-free-in-sk_peer_label.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets"
   patch -Np1 -i "${srcdir}/0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets.patch"
 
   # Add bootsplash - http://lkml.iu.edu/hypermail/linux/kernel/1710.3/01542.html
-  echo "PATCH: 0001-bootsplash"
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0002-bootsplash"
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0003-bootsplash"
   patch -Np1 -i "${srcdir}/0003-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0004-bootsplash"
   patch -Np1 -i "${srcdir}/0004-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0005-bootsplash"
   patch -Np1 -i "${srcdir}/0005-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0006-bootsplash"
   patch -Np1 -i "${srcdir}/0006-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0007-bootsplash"
   patch -Np1 -i "${srcdir}/0007-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0008-bootsplash"
   patch -Np1 -i "${srcdir}/0008-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0009-bootsplash"
   patch -Np1 -i "${srcdir}/0009-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0010-bootsplash"
   patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0011-bootsplash"
   patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: 0012-bootsplash"
   patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
   # use git-apply to add binary files
-  echo "PATCH: 0013-bootsplash"
   git apply -p1 < "${srcdir}/0013-bootsplash.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
 
   # add aufs5 support
-  echo "PATCH: aufs5.x-rcN-$"
   patch -Np1 -i "${srcdir}/aufs5.x-rcN-${_aufs}.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: aufs5-base"
   patch -Np1 -i "${srcdir}/aufs5-base.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: aufs5-kbuild"
   patch -Np1 -i "${srcdir}/aufs5-kbuild.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: aufs5-loopback"
   patch -Np1 -i "${srcdir}/aufs5-loopback.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: aufs5.x-rcN-$"
   patch -Np1 -i "${srcdir}/aufs5-mmap.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: aufs5-standalone"
   patch -Np1 -i "${srcdir}/aufs5-standalone.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: tmpfs-idr"
   patch -Np1 -i "${srcdir}/tmpfs-idr.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
-  echo "PATCH: vfs-ino"
   patch -Np1 -i "${srcdir}/vfs-ino.patch"
-  echo "-------------------------------------------------------------------------------------------------------"
 
   if [ "${CARCH}" = "x86_64" ]; then
     cat "${srcdir}/config.x86_64" > ./.config
@@ -207,9 +147,6 @@ prepare() {
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
     sed -i "s|CONFIG_LOCALVERSION_AUTO=.*|CONFIG_LOCALVERSION_AUTO=n|" ./.config
   fi
-
-  # set patchlevel to 6
-  sed -ri "s|^(PATCHLEVEL =).*|\1 6|" Makefile
 
   # set extraversion to pkgrel
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
