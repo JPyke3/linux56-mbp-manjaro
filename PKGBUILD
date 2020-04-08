@@ -100,12 +100,12 @@ prepare() {
   #patch -Np1 -i "${srcdir}/prepatch-${_basekernel}.patch"
 
   # disable USER_NS for non-root users by default
-  patch -Np1 -i ../0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
+  patch -Np1 -i "${srcdir}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch"
   # other fixes by Arch
   
   # https://bugzilla.kernel.org/show_bug.cgi?id=207139
-  patch -Np1 -i "${srcdir}/0001-ALSA-hda-Fix-potential-access-overflow-in-beep-helpe.patch
-  patch -Np1 -i "${srcdir}/0002-ALSA-ice1724-Fix-invalid-access-for-enumerated-ctl-i.patch
+  patch -Np1 -i "${srcdir}/0001-ALSA-hda-Fix-potential-access-overflow-in-beep-helpe.patch"
+  patch -Np1 -i "${srcdir}/0002-ALSA-ice1724-Fix-invalid-access-for-enumerated-ctl-i.patch"
   
   # add patches for snapd
   # https://gitlab.com/apparmor/apparmor-kernel/tree/5.2-outoftree
