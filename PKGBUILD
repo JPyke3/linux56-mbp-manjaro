@@ -13,7 +13,7 @@ _basekernel=5.6
 _basever=56
 _aufs=20200302
 pkgver=5.6.3
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -35,6 +35,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
         # MANJARO Patches
+        '0001-ALSA-hda-Fix-potential-access-overflow-in-beep-helpe.patch'
+        '0002-ALSA-ice1724-Fix-invalid-access-for-enumerated-ctl-i.patch'
         '0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules.patch'
         '0002-apparmor-af_unix-mediation.patch'
         '0003-apparmor-fix-use-after-free-in-sk_peer_label.patch'
@@ -55,7 +57,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             'a677aa98df0fc907314130b511feef3108717d98c405c98a51dde4e06d1c492c'
-            '560c296946217372ea4357a4eea1a062e9cb8e21acb40fe842259baa18aa8da9'
+            'c4c1e6dc98efba3d0af1a70a28fdeaf84ce1bfc61713c2d7159403bbab59b233'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
             'ef60c4afbae6270748bca1661d054815ea83f84ac3962fa316cd1b6abea506a4'
@@ -67,6 +69,8 @@ sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             '1c69ed79eeef0c0dcf68ce3086a0e372260d2fed94c93c7711e0682b2bcaae39'
             '29adcb9fac02b77f93ec36c2003ae930cc0a6ee1884d002c280480b5e8f22261'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
+            'd9032bb428c42e093f2686ae2830133c3600496f93574b3b41dc0ec69af6d5ad'
+            'bc53f7ec92126955e221698e634d2185909e83bc526f7ff9c7ad86da3fd8c8f4'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
             '5cbbf3db9ea3205e9b89fe3049bea6dd626181db0cb0dc461e4cf5a400c68dd6'
             'c7dbec875d0c1d6782c037a1dcefff2e5bdb5fc9dffac1beea07dd8c1bdef1d7'
@@ -98,6 +102,10 @@ prepare() {
   # disable USER_NS for non-root users by default
   patch -Np1 -i ../0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch
   # other fixes by Arch
+  
+  # https://bugzilla.kernel.org/show_bug.cgi?id=207139
+  patch -Np1 -i "${srcdir}/0001-ALSA-hda-Fix-potential-access-overflow-in-beep-helpe.patch
+  patch -Np1 -i "${srcdir}/0002-ALSA-ice1724-Fix-invalid-access-for-enumerated-ctl-i.patch
   
   # add patches for snapd
   # https://gitlab.com/apparmor/apparmor-kernel/tree/5.2-outoftree
