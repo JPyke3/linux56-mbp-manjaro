@@ -12,7 +12,7 @@ _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
 _aufs=20200302
-pkgver=5.6.6
+pkgver=5.6.7
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
@@ -55,7 +55,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
-            '669e3bebb988e7f1124e6687e384304ed70139ea4a869bd4159c3df27c3d9082'
+            'a91bbeb913be661b64adf3adca12844c03c89fb801b1cc87ccb0af43d2eae460'
             '89e3a2175b82326e22211123d20a4da4d2b9f42b2f43027e7e15cfc33fd410c1'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
@@ -295,4 +295,4 @@ package_linux56-headers() {
   done < <(find "${_builddir}/scripts" -type f -perm -u+w -print0 2>/dev/null)
 }
 
-_server=cx51
+_server=cpx51
