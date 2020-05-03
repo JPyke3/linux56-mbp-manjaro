@@ -11,9 +11,9 @@ pkgname=('linux56' 'linux56-headers')
 _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
-_aufs=20200302
+_aufs=20200413
 pkgver=5.6.10
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -43,16 +43,16 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         # Lenovo P50 multiple fans
         '0005-thinkpad_acpi_dual_fan_control.patch::https://github.com/dvhart/linux-pdx86/commit/26c16f9d956f269bbc32e034e3ec11c4831137de.patch'
         # Oracle
-        0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch
-        0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch
-        0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch
-        0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch
-        0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch
-        0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch
-        0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch
-        0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch
-        0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch
-        0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch
+        '0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch'
+        '0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch'
+        '0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch'
+        '0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch'
+        '0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch'
+        '0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch'
+        '0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch'
+        '0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch'
+        '0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch'
+        '0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch'
         # Bootsplash
         '0001-bootsplash.patch'
         '0002-bootsplash.patch'
@@ -69,17 +69,17 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             'd342dc77e23ba7faff4767b9f5fd1cdeaabb4d5141b87900a7f10bf733284342'
-            'e9bb52fbb854afdb4ce9680056b556217e3f754200cab4ced67cd46028aea4ab'
+            '324f9aa23db7de2e5ce2834c77c41d3bab5ae451860997a3ef8c936cef618f23'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            'ef60c4afbae6270748bca1661d054815ea83f84ac3962fa316cd1b6abea506a4'
-            '294d00163a5c68fee26f0adb52ccc309b1d1ae69ed7fe65fdabf29d425798ee4'
+            'dc4f7815133e242ce4d04e8315de3c449a0205ac7f85932f22bcac461ba46940'
+            'f3fc55f0726cc11cfd22a5372f488e8984567631c130218cc40ae35c8abd63f7'
             '8e3b0a3c7c9b62d29dc711885ef00578a65f1d0315f31e1d9f438aac1ced02d6'
-            '562752375ec67ece529eadf3f003193a371a875bdf6ed842ea8afde0e2e5618f'
-            '023a61cdf160ca98dc9a0222c1e82c98a1cc09ddfe2c04020a3c30a9b568107e'
-            'eb1aaa49b9d5cdf35985a0803129b39145f81a4f1499f6e7f2afd8d31017b694'
-            '1c69ed79eeef0c0dcf68ce3086a0e372260d2fed94c93c7711e0682b2bcaae39'
-            '29adcb9fac02b77f93ec36c2003ae930cc0a6ee1884d002c280480b5e8f22261'
+            '2ad08bab616dd3a8a0468a0ba3d00c0e7821e395093cc63fa622288e8a2806fb'
+            '3511bf0eb907e850e165d4049432c42525e1c66c99e344005e9d1bde4260b2d2'
+            'bf9499d40618e5f808d15e7317b282373c50473a6aa538a4893bf7277bf5fed7'
+            '9203ec78b9f6000f9f3d094316f355eeab9488847192dca0d6346d159bb17097'
+            '20abad2643c635210c925c3ce3a12eb31f813819d6e661c6d99d9cc3163fbef7'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
             '5cbbf3db9ea3205e9b89fe3049bea6dd626181db0cb0dc461e4cf5a400c68dd6'
@@ -122,19 +122,20 @@ prepare() {
 
   # disable USER_NS for non-root users by default
   patch -Np1 -i "${srcdir}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch"
+
   # other fixes by Arch
 
-  # https://lore.kernel.org/lkml/20200501010935.GB104377@localhost/
-  patch -Np1 -i "${srcdir}"/0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch
-  patch -Np1 -i "${srcdir}"/0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch
-  patch -Np1 -i "${srcdir}"/0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch
-  patch -Np1 -i "${srcdir}"/0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch
-  patch -Np1 -i "${srcdir}"/0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch
-  patch -Np1 -i "${srcdir}"/0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch
-  patch -Np1 -i "${srcdir}"/0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch
-  patch -Np1 -i "${srcdir}"/0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch
-  patch -Np1 -i "${srcdir}"/0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch
-  patch -Np1 -i "${srcdir}"/0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch
+  # Oracle
+  patch -Np1 -i "${srcdir}/0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch"
+  patch -Np1 -i "${srcdir}/0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch"
+  patch -Np1 -i "${srcdir}/0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch"
+  patch -Np1 -i "${srcdir}/0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch"
+  patch -Np1 -i "${srcdir}/0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch"
+  patch -Np1 -i "${srcdir}/0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch"
+  patch -Np1 -i "${srcdir}/0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch"
+  patch -Np1 -i "${srcdir}/0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch"
+  patch -Np1 -i "${srcdir}/0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch"
+  patch -Np1 -i "${srcdir}/0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch"
   
   # add patches for snapd
   # https://gitlab.com/apparmor/apparmor-kernel/tree/5.2-outoftree
