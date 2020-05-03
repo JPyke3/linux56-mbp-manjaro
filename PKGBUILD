@@ -43,16 +43,16 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         # Lenovo P50 multiple fans
         '0005-thinkpad_acpi_dual_fan_control.patch::https://github.com/dvhart/linux-pdx86/commit/26c16f9d956f269bbc32e034e3ec11c4831137de.patch'
         # Oracle
-0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch
-0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch
-0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch
-0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch
-0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch
-0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch
-0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch
-0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch
-0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch
-0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch
+        0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch
+        0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch
+        0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch
+        0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch
+        0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch
+        0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch
+        0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch
+        0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch
+        0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch
+        0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch
         # Bootsplash
         '0001-bootsplash.patch'
         '0002-bootsplash.patch'
@@ -124,6 +124,7 @@ prepare() {
   patch -Np1 -i "${srcdir}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch"
   # other fixes by Arch
 
+  # https://lore.kernel.org/lkml/20200501010935.GB104377@localhost/
   patch -Np1 -i "${srcdir}"/0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch
   patch -Np1 -i "${srcdir}"/0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch
   patch -Np1 -i "${srcdir}"/0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch
