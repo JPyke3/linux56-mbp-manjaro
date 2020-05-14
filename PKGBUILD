@@ -12,7 +12,7 @@ _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
 _aufs=20200413
-pkgver=5.6.12
+pkgver=5.6.13
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
@@ -34,6 +34,9 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         'vfs-ino.patch'
         # ARCH Patches
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
+        '0001-gcc-common.h-Update-for-GCC-10.patch'
+        '0002-Makefile-disallow-data-races-on-gcc-10-as-well.patch'
+        '0003-x86-Fix-early-boot-crash-on-gcc-10-next-try.patch'
         # MANJARO Patches
         #"prepatch-${_basekernel}.patch"
         '0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules.patch'
@@ -68,7 +71,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
-            'ef84dbd5f9e7879a5b53d26ab766614775c22343ecf2ddd6beb969dcde1f20a6'
+            'd8604aec02928a19e213af003977108e4b93935762b178f86da9e7c18e6cebac'
             '324f9aa23db7de2e5ce2834c77c41d3bab5ae451860997a3ef8c936cef618f23'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
@@ -81,6 +84,9 @@ sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             '9203ec78b9f6000f9f3d094316f355eeab9488847192dca0d6346d159bb17097'
             '20abad2643c635210c925c3ce3a12eb31f813819d6e661c6d99d9cc3163fbef7'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
+            '2b63997760aa823b5907c3c5653f35265e9c6320b812b4f4a8e7c74256dab7c7'
+            '875400c2dded3c05588025e0095b529c53f317abcccc99507eff0a75f24aa93f'
+            'b7505c345722c4c1ca27c8d99114d4b8746e530acd9b7c4e5a0601b89bfba2d2'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
             '5cbbf3db9ea3205e9b89fe3049bea6dd626181db0cb0dc461e4cf5a400c68dd6'
             'c7dbec875d0c1d6782c037a1dcefff2e5bdb5fc9dffac1beea07dd8c1bdef1d7'
@@ -124,6 +130,9 @@ prepare() {
   patch -Np1 -i "${srcdir}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch"
 
   # other fixes by Arch
+  patch -Np1 -i "${srcdir}/0001-gcc-common.h-Update-for-GCC-10.patch"
+  patch -Np1 -i "${srcdir}/0002-Makefile-disallow-data-races-on-gcc-10-as-well.patch"
+  patch -Np1 -i "${srcdir}/0003-x86-Fix-early-boot-crash-on-gcc-10-next-try.patch"
 
   # Oracle
   patch -Np1 -i "${srcdir}/0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch"
