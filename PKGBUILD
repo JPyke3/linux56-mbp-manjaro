@@ -11,8 +11,8 @@ pkgname=('linux56' 'linux56-headers')
 _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
-_aufs=20200413
-pkgver=5.6.14
+_aufs=20200518
+pkgver=5.6.15
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
@@ -68,17 +68,17 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
-            '07e737cfdc79382dc259c4844a150d8d72ebbcdc9d7e03a9503f8f8e19f1aea4'
-            '324f9aa23db7de2e5ce2834c77c41d3bab5ae451860997a3ef8c936cef618f23'
+            '995f3a824d7ee90b137fc22af9b5e2b7d0b1f9f81b51bfb01bfc284bf9109e34'
+            '4dc8a63eb7f007522416d7fc4543c4e2591ad1d954c9ffa2e0708ff0a08ef3ad'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            'dc4f7815133e242ce4d04e8315de3c449a0205ac7f85932f22bcac461ba46940'
-            'f3fc55f0726cc11cfd22a5372f488e8984567631c130218cc40ae35c8abd63f7'
-            '8e3b0a3c7c9b62d29dc711885ef00578a65f1d0315f31e1d9f438aac1ced02d6'
-            '2ad08bab616dd3a8a0468a0ba3d00c0e7821e395093cc63fa622288e8a2806fb'
-            '3511bf0eb907e850e165d4049432c42525e1c66c99e344005e9d1bde4260b2d2'
-            'bf9499d40618e5f808d15e7317b282373c50473a6aa538a4893bf7277bf5fed7'
-            '9203ec78b9f6000f9f3d094316f355eeab9488847192dca0d6346d159bb17097'
+            'e3915fb1ecca9e2ad59e36ece30628b807452a9c05453537bf1e6872bfb3fc7c'
+            '0cf385b91049106e2e737b7fcf749bbf3469a5179358bef3a21bf574639c12aa'
+            '54613b757f4765e24827833ecbd3e3b48d6bfa47484e558b0e2104808ab4b631'
+            'ba4d803d68e9f784b765dcc28c9315ae5ada55bde76d48fe9fa859e0b4f3c9e3'
+            '60198f61b1b42574db0130802b64cb4b4b5aee483fa92370959dcdfa8b18545a'
+            'b3ab078413fb0eca600a32a7ae5f61554fd709d4647a109320412828d36bea69'
+            '9e7ce0431a786444e95e05dafde2d75387fb75d0709dcc807915d638879701cd'
             '20abad2643c635210c925c3ce3a12eb31f813819d6e661c6d99d9cc3163fbef7'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
@@ -124,22 +124,36 @@ prepare() {
   patch -Np1 -i "${srcdir}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch"
 
   msg "oracle patches"
+  msg2 "0001-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0001-linux-dmjordan.git-5caab6aa6a673469e451ecdd018c5a42b2fb1f10.patch"
+  msg2 "0002-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0002-linux-dmjordan.git-018908fd0f9a56156bc34bc86781a7877c3d4d20.patch"
+  msg2 "0003-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0003-linux-dmjordan.git-14beeebb8bff7b5f1baed7648a0e050d7a74012e.patch"
+  msg2 "0004-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0004-linux-dmjordan.git-62075c45f01af2c4c1fc6f315bd7cfc9c3a3c1ee.patch"
+  msg2 "0005-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0005-linux-dmjordan.git-5d7bb66ae309681715b44acdc8d17c450592e77a.patch"
+  msg2 "0006-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0006-linux-dmjordan.git-e26200a16b12befc4f2be816ef1f6f0a0b34653d.patch"
+  msg2 "0007-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0007-linux-dmjordan.git-0e955dc47a08815500de2f559d0e6781622cbbf2.patch"
+  msg2 "0008-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0008-linux-dmjordan.git-09828a28b104334ea5d1744fdfb525bfc51549b3.patch"
+  msg2 "0009-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0009-linux-dmjordan.git-b87c24b69608305c65161165eb07460ecddb8a70.patch"
+  msg2 "0010-linux-dmjordan"
   patch -Np1 -i "${srcdir}/0010-linux-dmjordan.git-dacbf15ae1e2027e71eb1ef45ea4d831189923dc.patch"
   
   msg "snapd patches"
   # https://gitlab.com/apparmor/apparmor-kernel/tree/5.2-outoftree
+  msg2 "0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules"
   patch -Np1 -i "${srcdir}/0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules.patch"
+  msg2 "0002-apparmor-af_unix-mediation"
   patch -Np1 -i "${srcdir}/0002-apparmor-af_unix-mediation.patch"
+  msg2 "0003-apparmor-fix-use-after-free-in-sk_peer_label"
   patch -Np1 -i "${srcdir}/0003-apparmor-fix-use-after-free-in-sk_peer_label.patch"
+  msg2 "0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets"
   patch -Np1 -i "${srcdir}/0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets.patch"
   
   msg "multiple fans on Lenovo P50"
@@ -148,29 +162,50 @@ prepare() {
 
   msg "bootsplash patches"
   # http://lkml.iu.edu/hypermail/linux/kernel/1710.3/01542.html
+  msg2 "0001-bootsplash."
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
+  msg2 "0002-bootsplash."
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
+  msg2 "0003-bootsplash."
   patch -Np1 -i "${srcdir}/0003-bootsplash.patch"
+  msg2 "0004-bootsplash."
   patch -Np1 -i "${srcdir}/0004-bootsplash.patch"
+  msg2 "0005-bootsplash."
   patch -Np1 -i "${srcdir}/0005-bootsplash.patch"
+  msg2 "0006-bootsplash."
   patch -Np1 -i "${srcdir}/0006-bootsplash.patch"
+  msg2 "0007-bootsplash."
   patch -Np1 -i "${srcdir}/0007-bootsplash.patch"
+  msg2 "0008-bootsplash."
   patch -Np1 -i "${srcdir}/0008-bootsplash.patch"
+  msg2 "0009-bootsplash."
   patch -Np1 -i "${srcdir}/0009-bootsplash.patch"
+  msg2 "0010-bootsplash."
   patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
+  msg2 "0011-bootsplash."
   patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
+  msg2 "0012-bootsplash."
   patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
   # use git-apply to add binary files
+  msg2 "0013-bootsplash."
   git apply -p1 < "${srcdir}/0013-bootsplash.patch"
 
   msg "add aufs5 support"
+  msg2 "aufs5.x-rcN-${_aufs}"
   patch -Np1 -i "${srcdir}/aufs5.x-rcN-${_aufs}.patch"
+  msg2 "aufs5-base"
   patch -Np1 -i "${srcdir}/aufs5-base.patch"
+  msg2 "aufs5-kbuild"
   patch -Np1 -i "${srcdir}/aufs5-kbuild.patch"
+  msg2 "aufs5-loopback"
   patch -Np1 -i "${srcdir}/aufs5-loopback.patch"
+  msg2 "aufs5-mmap"
   patch -Np1 -i "${srcdir}/aufs5-mmap.patch"
+  msg2 "aufs5-standalone"
   patch -Np1 -i "${srcdir}/aufs5-standalone.patch"
+  msg2 "tmpfs-idr"
   patch -Np1 -i "${srcdir}/tmpfs-idr.patch"
+  msg2 "vfs-ino"
   patch -Np1 -i "${srcdir}/vfs-ino.patch"
 
   if [ "${CARCH}" = "x86_64" ]; then
