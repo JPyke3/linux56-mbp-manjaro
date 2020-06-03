@@ -12,7 +12,7 @@ _kernelname=-MANJARO
 _basekernel=5.6
 _basever=56
 _aufs=20200518
-pkgver=5.6.15
+pkgver=5.6.16
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
@@ -24,7 +24,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         # the main kernel config files
         'config.x86_64' 'config' 'config.aufs'
         # AUFS Patches
-        "aufs5.x-rcN-${_aufs}.patch"
+        "aufs5.6-${_aufs}.patch"
         'aufs5-base.patch'
         'aufs5-kbuild.patch'
         'aufs5-loopback.patch'
@@ -68,17 +68,17 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
-            '995f3a824d7ee90b137fc22af9b5e2b7d0b1f9f81b51bfb01bfc284bf9109e34'
+            'd032f7c4c0d894df6e90fb4990afd4dedb0e794129acf7637728bbf536cc4c9c'
             '4dc8a63eb7f007522416d7fc4543c4e2591ad1d954c9ffa2e0708ff0a08ef3ad'
             'bfe52746bfc04114627b6f1e0dd94bc05dd94abe8f6dbee770f78d6116e315e8'
             'b44d81446d8b53d5637287c30ae3eb64cae0078c3fbc45fcf1081dd6699818b5'
-            'e3915fb1ecca9e2ad59e36ece30628b807452a9c05453537bf1e6872bfb3fc7c'
-            '0cf385b91049106e2e737b7fcf749bbf3469a5179358bef3a21bf574639c12aa'
-            '54613b757f4765e24827833ecbd3e3b48d6bfa47484e558b0e2104808ab4b631'
-            'ba4d803d68e9f784b765dcc28c9315ae5ada55bde76d48fe9fa859e0b4f3c9e3'
-            '60198f61b1b42574db0130802b64cb4b4b5aee483fa92370959dcdfa8b18545a'
-            'b3ab078413fb0eca600a32a7ae5f61554fd709d4647a109320412828d36bea69'
-            '9e7ce0431a786444e95e05dafde2d75387fb75d0709dcc807915d638879701cd'
+            '0692136bde829e8eabb810d9e7cd553558756e89ddf13161a0604b44e87a230d'
+            '31e2f0ed876e605a300ec14e6b5574163b3400f069df13f43faad24f0c91a696'
+            '5f420b7578c402448a94d37ec156b22cd3cc009a418423629b699855c5f97156'
+            '998ff0d18c67521380e6bc0cf363baaf93129a4ac3d24320491e6c00d84a17a1'
+            '69d56e5d191e4e6cbca31bf0197af208d21fad6256ae61bcef769fa57a0c8960'
+            '22b5e9517a15906c8eccebe09393efd91db67aa7ebf9ec8e653e87dd07963137'
+            '9203ec78b9f6000f9f3d094316f355eeab9488847192dca0d6346d159bb17097'
             '20abad2643c635210c925c3ce3a12eb31f813819d6e661c6d99d9cc3163fbef7'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
@@ -191,8 +191,8 @@ prepare() {
   git apply -p1 < "${srcdir}/0013-bootsplash.patch"
 
   msg "add aufs5 support"
-  msg2 "aufs5.x-rcN-${_aufs}"
-  patch -Np1 -i "${srcdir}/aufs5.x-rcN-${_aufs}.patch"
+  msg2 "aufs5.6-${_aufs}"
+  patch -Np1 -i "${srcdir}/aufs5.6-${_aufs}.patch"
   msg2 "aufs5-base"
   patch -Np1 -i "${srcdir}/aufs5-base.patch"
   msg2 "aufs5-kbuild"
