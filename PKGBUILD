@@ -13,7 +13,7 @@ _basekernel=5.6
 _basever=56
 _aufs=20200518
 pkgver=5.6.17
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -36,6 +36,8 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
         # MANJARO Patches
         #"prepatch-${_basekernel}.patch"
+        '0001-nonupstream-navi10-vfio-reset.patch'
+        '0001-i2c-nuvoton-nc677x-hwmon-driver.patch'
         '0001-apparmor-patch-to-provide-compatibility-with-v2-net-rules.patch'
         '0002-apparmor-af_unix-mediation.patch'
         '0003-apparmor-fix-use-after-free-in-sk_peer_label.patch'
@@ -81,6 +83,8 @@ sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             '9203ec78b9f6000f9f3d094316f355eeab9488847192dca0d6346d159bb17097'
             '20abad2643c635210c925c3ce3a12eb31f813819d6e661c6d99d9cc3163fbef7'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
+            '7a2758f86dd1339f0f1801de2dbea059b55bf3648e240878b11e6d6890d3089c'
+            '0556859a8168c8f7da9af8e2059d33216d9e5378d2cac70ca54c5ff843fa5add'
             '98202b8ad70d02d86603294bae967874fa7b18704b5c7b867568b0fd33a08921'
             '5cbbf3db9ea3205e9b89fe3049bea6dd626181db0cb0dc461e4cf5a400c68dd6'
             'c7dbec875d0c1d6782c037a1dcefff2e5bdb5fc9dffac1beea07dd8c1bdef1d7'
@@ -155,6 +159,17 @@ prepare() {
   patch -Np1 -i "${srcdir}/0003-apparmor-fix-use-after-free-in-sk_peer_label.patch"
   msg2 "0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets"
   patch -Np1 -i "${srcdir}/0004-apparmor-fix-apparmor-mediating-locking-non-fs-unix-sockets.patch"
+
+  msg "navi10-vfio reset patch"
+  # TODO: remove when AMD properly fixes it!
+  # INFO: this is a hack and won't be upstreamed
+  # https://forum.level1techs.com/t/145666/86
+  # https://forum.manjaro.org/t/107820/11
+  patch -Np1 -i "${srcdir}/0001-nonupstream-navi10-vfio-reset.patch"
+
+  msg "nuvoton hwmon driver patch"
+  # https://twitter.com/vskye11/status/1216240051639791616
+  patch -Np1 -i '../0001-i2c-nuvoton-nc677x-hwmon-driver.patch'
   
   msg "multiple fans on Lenovo P50"
   # https://github.com/vmatare/thinkfan/issues/58
