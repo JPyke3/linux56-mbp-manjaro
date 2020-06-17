@@ -270,6 +270,7 @@ package_linux56() {
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+  install=linux56.install
 
   cd "${srcdir}/linux-${_basekernel}"
 
