@@ -4,6 +4,10 @@ The Manjaro Kernel built with the latest and greatest kernel patches for T2 Macb
 
 mbp-manjaro-iso: ~coming very soon~
 
+extramodules-mbp-manjaro: https://github.com/JPyke3/extramodules-mbp-manjaro
+
+repository: http://jacobpyke.xyz:8080/archlinux/
+
 All Drivers/Patches Featured:
  * Keyboard, Trackpad, Audio and Suspend: https://github.com/MCMrARM/mbp2018-bridge-drv
  * Arch Linux Kernel Patches (For Driver Above): https://github.com/aunali1/linux-mbp-arch
