@@ -6,15 +6,15 @@
 # Maintainer: Jonathon Fernyhough (i686) <jonathon@manjaro.org>
 # Contributor: Helmut Stult <helmut[at]manjaro[dot]org>
 
-pkgbase=linux56
-pkgname=('linux56' 'linux56-headers')
-_kernelname=-MANJARO
+pkgbase=linux56-mbp
+pkgname=('linux56-mbp' 'linux56-mbp-headers' 'linux56-mbp-docs')
+_kernelname=-MANJARO-mbp
 _basekernel=5.6
 _basever=56
 _aufs=20200518
 pkgver=5.6.19
 pkgrel=2
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils' 'git')
@@ -68,7 +68,22 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar.x
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
-        '0013-bootsplash.patch')
+        '0013-bootsplash.patch'
+        #mbp
+        '2001-drm-amd-display-Force-link_rate-as-LINK_RATE_RBR2-fo.patch'
+        '3001-applesmc-convert-static-structures-to-drvdata.patch'
+        '3002-applesmc-make-io-port-base-addr-dynamic.patch'
+        '3003-applesmc-switch-to-acpi_device-from-platform.patch'
+        '3004-applesmc-key-interface-wrappers.patch'
+        '3005-applesmc-basic-mmio-interface-implementation.patch'
+        '3006-applesmc-fan-support-on-T2-Macs.patch'
+        '4001-touchpad.patch'
+        '4002-keyboard-backlight.patch'
+        '5001-brcmfmac-move-brcmf_mp_device-into-its-own-header.patch'
+        '5002-brcmfmac-Add-ability-to-manually-specify-FW-rambase-.patch'
+        'camera.patch'
+        'sphinx-workaround.patch'
+        'wifi.patch')
 sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             '523e014b8432252f9739216e63811e60e6f8da5318122ec880c24d752a493e0f'
             '9ac562348f78da875874f42569cdbb9b1143adf323cbe3b2e9d48df01efd7d59'
@@ -112,7 +127,22 @@ sha256sums=('e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622'
             'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef')
+            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
+            '8e8fb392a95f71ae63df14199b9671a75a7e819e75d54a6e2767d6ea5b86bc6a'
+            '25e1aac0d44d72e377f08e4f4b90351cffcacc0be63e02a4033cb99f10cc9fe7'
+            'c70118659c5cf6a5c7f060c941d46fdd3b1e6d28f2b62c24a941745f2b3c4732'
+            '3855aa07fab97d202900216951225b6952d7c716258a3c3727df8e6277289ee0'
+            '9e5e0b45fe007ed214049b26b44174ee8f61376076e80fd33bba9fdac001e157'
+            '3c8a361370ed3ee094e2c8af1ff5360fd78f24e387c250904031fb70e8f2bb6e'
+            '8e43d95104301913737e5d73860f0e21bb0e5e25dcfd0f16d48a0715b38c98a1'
+            'e1d72fdb0a7a66a6f3fc8afb6fe056f28cfa088c1cc9c799b93405b62a274b96'
+            'a6c070d7b7444d711d9cb6b28bccb774228864132ef83dd3a291df3353e85465'
+            '0318952f59efdce4dc72703adc764940db6fdff184960c27a23a80c3413d8a60'
+            'e632f2959efca848fd28acb5e278cc476f8fb54d70ca95272b0a76add47e474e'
+            '717f7fc70a3e3fcfa5ffbac505c8259c1d86718ca1ca6593e8925dac3d29a835'
+            '8cb21e0b3411327b627a9dd15b8eb773295a0d2782b1a41b2a8839d1b2f5778c'
+            '2a496b5e976e8371e5c1fa8e2102c19481fa72bcdc97df7fe224a1aef8c32609')
+
 prepare() {
   cd "${srcdir}/linux-${_basekernel}"
 
@@ -223,6 +253,37 @@ prepare() {
   msg2 "vfs-ino"
   patch -Np1 -i "${srcdir}/vfs-ino.patch"
 
+    #add mbp support
+  msg "add mbp support"
+  msg2 "drm-amd-display-force-link-rate"
+  patch -Np1 -i "${srcdir}/2001-drm-amd-display-Force-link_rate-as-LINK_RATE_RBR2-fo.patch"
+  msg2 "applesmc-convert-static-structures-to-drvdata"
+  patch -Np1 -i "${srcdir}/3001-applesmc-convert-static-structures-to-drvdata.patch"
+  msg2 "applesmc-switch-to-acpi-device-from-platform"
+  patch -Np1 -i "${srcdir}/3002-applesmc-make-io-port-base-addr-dynamic.patch"
+  msg2 "applesmc-switch-to-acpi_device-from-platform"
+  patch -Np1 -i "${srcdir}/3003-applesmc-switch-to-acpi_device-from-platform.patch"
+  msg2 "applesmc-key-interface-wrappers"
+  patch -Np1 -i "${srcdir}/3004-applesmc-key-interface-wrappers.patch"
+  msg2 "applesmc-basic-mmio-interface-implementation"
+  patch -Np1 -i "${srcdir}/3005-applesmc-basic-mmio-interface-implementation.patch"
+  msg2 "applesmc-fan-support-on-T2-Macs"
+  patch -Np1 -i "${srcdir}/3006-applesmc-fan-support-on-T2-Macs.patch"
+  msg2 "touchpad"
+  patch -Np1 -i "${srcdir}/4001-touchpad.patch"
+  msg2 "keyboard-backlight"
+  patch -Np1 -i "${srcdir}/4002-keyboard-backlight.patch"
+  msg2 "brcmfmac-move-brcmf_mp_device-into-its-own-header"
+  patch -Np1 -i "${srcdir}/5001-brcmfmac-move-brcmf_mp_device-into-its-own-header.patch"
+  msg2 "brcmfmac-Add-ability-to-manually-specify-FW-rambase"
+  patch -Np1 -i "${srcdir}/5002-brcmfmac-Add-ability-to-manually-specify-FW-rambase-.patch"
+  msg2 "camera"
+  patch -Np1 -i "${srcdir}/camera.patch"
+  msg2 "sphinx-workaround"
+  patch -Np1 -i "${srcdir}/sphinx-workaround.patch"
+  msg2 "wifi"
+  patch -Np1 -i "${srcdir}/wifi.patch"
+
   if [ "${CARCH}" = "x86_64" ]; then
     cat "${srcdir}/config.x86_64" > ./.config
   else
@@ -265,7 +326,7 @@ build() {
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
-package_linux56() {
+package_linux56-mbp() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=27')
   optdepends=('crda: to set the correct wireless channels of your country')
@@ -292,9 +353,9 @@ package_linux56() {
 
   # add kernel version
   if [ "${CARCH}" = "x86_64" ]; then
-     echo "${pkgver}-${pkgrel}-MANJARO x64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
+     echo "${pkgver}-${pkgrel}-MANJARO-mbp x64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
   else
-     echo "${pkgver}-${pkgrel}-MANJARO x32" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
+     echo "${pkgver}-${pkgrel}-MANJARO-mbp x32" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
   fi
 
   # make room for external modules
@@ -315,7 +376,7 @@ package_linux56() {
   install -Dt "${pkgdir}/usr/lib/modules/${_kernver}/build" -m644 vmlinux
 }
 
-package_linux56-headers() {
+package_linux56-mbp-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   provides=("linux-headers=$pkgver")
 
@@ -385,6 +446,25 @@ package_linux56-headers() {
     esac
     /usr/bin/strip ${_strip} "${_binary}"
   done < <(find "${_builddir}/scripts" -type f -perm -u+w -print0 2>/dev/null)
+}
+
+package_linux56-mbp-docs() {
+  pkgdesc="Documentation for the $pkgdesc kernel"
+
+  cd "${srcdir}/linux-${_basekernel}"
+  local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
+
+  echo "Installing documentation..."
+  local src dst
+  while read -rd '' src; do
+    dst="${src#Documentation/}"
+    dst="$builddir/Documentation/${dst#output/}"
+    install -Dm644 "$src" "$dst"
+  done < <(find Documentation -name '.*' -prune -o ! -type d -print0)
+
+  echo "Adding symlink..."
+  mkdir -p "$pkgdir/usr/share/doc"
+  ln -sr "$builddir/Documentation" "$pkgdir/usr/share/doc/$pkgbase"
 }
 
 _server=cpx51
