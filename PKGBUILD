@@ -430,7 +430,7 @@ package_linux56-mbp-headers() {
   done
 
   # remove files already in linux-docs package
-  rm -r "${_builddir}/Documentation"
+  # rm -r "${_builddir}/Documentation"
 
   # Fix permissions
   chmod -R u=rwX,go=rX "${_builddir}"
